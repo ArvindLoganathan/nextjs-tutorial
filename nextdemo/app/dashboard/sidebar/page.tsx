@@ -5,7 +5,10 @@ import React from 'react'
 export const metadata: Metadata = {
   title: "sidebar",
 };
-const Sidebar = () => {
+const Sidebar = async() => {
+   await new Promise((resolve)=>{
+    setTimeout(()=>{resolve("resolved title")},2000)
+  });
   return (
     <>
     <div> Sidebar page</div>
