@@ -25,8 +25,8 @@ const isActive=pathName.startswith('dashboard') // then css work <br>
 11). Loading.tsx file create a suspence of page.tsx to show loading inncase of async call.<br>
 12). **Parallel Routes** like questionnaire page in gartner(sidebar & main content).**@** symbol is used t0 crate a **slot**. parallel route preserve previous state while navigation, but on hard refresh it looks for **default.js** file if exist render or else page not found-404  <br>
 **default.js** file act as fallback slot on current url so need to create default.tsx file on slot.(E:\project\nextjs-tutorial\nextdemo\app\question).<br>
-13).Intersepting route is used to intercept route from orgin to point to specified position route(.(same level),..(one level up)) based on folder name present. if hard refresh is done then it should point to original route.
-
+13).Intersepting route is used to intercept route from orgin to endpoint point to specified route using link tag(either .(same level),..(one level up) , (..)(..)(two level) , (...)(from root directory)) based on folder name present. if hard refresh is done then it should point to original endpoint.
+14).
 
 <br>
 Additional Note:<br>
