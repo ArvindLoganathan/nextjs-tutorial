@@ -26,7 +26,48 @@ const isActive=pathName.startswith('dashboard') // then css work <br>
 12). **Parallel Routes** like questionnaire page in gartner(sidebar & main content).**@** symbol is used t0 crate a **slot**. parallel route preserve previous state while navigation, but on hard refresh it looks for **default.js** file if exist render or else page not found-404  <br>
 **default.js** file act as fallback slot on current url so need to create default.tsx file on slot.(E:\project\nextjs-tutorial\nextdemo\app\question).<br>
 13).Intersepting route is used to intercept route from orgin to endpoint point to specified route using link tag(either .(same level),..(one level up) , (..)(..)(two level) , (...)(from root directory)) based on folder name present. if hard refresh is done then it should point to original endpoint.<br>
-14).**Route Handler** to create custom endpoint to act as rest endpoint(like node we can create CRUD end point or make bd call & return).we need to use route.ts file for it. if we had conflict between page route i.e page.tsx vs route.ts file (route.ts handle by default)<br>
+14).**Route Handler** to create custom endpoint to act as rest endpoint(like node we can create CRUD end point or make bd call & return).we need to use route.ts file for it. if we had conflict between page route i.e page.tsx vs route.ts file (route.ts handle by default).<br>
+Request is used for normal request header. where NextRequest provide searchparm,read headers,cookies and additional middleware support.<br> 
+15). redirect in rest call we have to use redirect from **next/navigation** throws 307 with temporary redirect.<br>
+16).returning new Date().toLocaleTimeString() on api response on dev response will be dynamic but on prod build it will be static. to make it dynamic we need to add **export const dynamic = "force-dynamic"**called as route-segment-config <br>
+if we use cookies,header,useSearchParams from request obj or if we use request with get req or http method then GET, in route function then its follow dynamic won't catch
+17).**Middleware** provide custom match config and conditional statement to intercept the request,redirect(url will change),rewrite(route will happen without url change),authentication,header,cookies management etc.<br>
+
+18)Rendering:
+**client Side:**<br>
+CSR(client side rendering),SSR(server side rendering), RSC(React server component)
+why CSR is not good for SEO becasue it has only one div on page load. rest is appened by js after download. Slow load time<br>
+<br>
+
+**Server side:**<br>
+a). SSG(static site generation)
+b). SSR
+
+SSR immediatly see the page as its already pre rendered and download as html and hydrate the event if required. we need to be careful on placement of interactive elemt (dynamic hydartion)
+<br>
+drawback- we need to fecth everthing before wwe can show everything.(fecth data), All or notjing waterfall.
+<br>
+To overcome above we use **Suspense ssr Archeture** to wrap lazy loading HTML streamming with selective hydration on client. We can also use code spliting react lazy loading.so partial hydration can take place. still for hydration tocomplete takes time when page is large.<br>
+
+<br>
+**Evolution:**
+<br>CSR->SSR->suspense SSR->RSC
+<br>
+
+**RSC** - strengthen and optimized both client and server side. They are rendered on CSR but partial rendering happen on server side to load initial content(optimized strategy).<br>
+It enhacne security can opt caching etc.<br>
+ 2 component 
+<br>
+a).Server component(default) - no client event and state & useeffect.
+b). client component("use client") - prerender once on server and rendered on client.
+
+client component console will be print twice as react run dev in strict mode. App router is build on RSC Architecture.<br>
+
+Rendering stretegy:
+1) static rendering- build once & cache by cdn in production mode, default in app router.
+2) Dynamic rendering-
+3) streaming-
+
 
 
 <br>

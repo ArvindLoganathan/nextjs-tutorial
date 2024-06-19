@@ -1,7 +1,11 @@
+import { redirect } from "next/navigation";
 import { data } from "../data";
 
 export  async function GET(request:Request,{params}:{params:{id:number}}) {
     console.log('body in patch',request)
+    if(params?.id>data.length){
+        redirect('/routehandler')
+    }
     const u=data.find(u=>u.id==params?.id)
     return  Response.json(u);
 }
