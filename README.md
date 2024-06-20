@@ -64,12 +64,25 @@ b). client component("use client") - prerender once on server and rendered on cl
 client component console will be print twice as react run dev in strict mode. App router is build on RSC Architecture.<br>
 
 Rendering stretegy:
-1) static rendering- build once & cache by cdn in production mode, default in app router.
-2) Dynamic rendering-
-3) streaming-
+1) static rendering- build once & cache by cdn in production mode, default in app router. Along with HTMl with RSC payload is generated in server served as chunk to client<br>
+2) Dynamic rendering- routes arerender eachtime at server, use of cookies,header,urml params etc  <br>
+3) streaming- if we wrap with suspense it would be streamed from server to client so rest compnent can be loaded and hydrated.<br>
 
+use server-only and client-only npm package and declare so that while development we don't import server component to client and versewise.. throws error on dev mode<br>
 
+<br>
 
+**Cacheing**
+
+<br>
+a). staitc page will be cached by default.<br>
+b). Dynamic page initial route will be fetch from server then it will be cached in data cache.Even if db refreshed the value but doesn't reflect the page as its cached. (opt out of cache)Inorder to set no cache use **cache: "no-store"** or **cache: "no-store"**(periodic call to db incase of user call the page.)<br>
+
+we should place **cache: "no-store"** after all force-cache as placed once no-store read then no request will be acched in that page.<br>
+
+**if we use cookie , header or request object. before Fetch req in page.tsx file will be cached but after dynmaic functionany fetch req is called it won't get cached**
+
+<br>
 <br>
 Additional Note:<br>
 1). folder struicture act as route in next js and page.tsx file is used for routing.<br>

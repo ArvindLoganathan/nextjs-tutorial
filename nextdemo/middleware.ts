@@ -14,7 +14,7 @@ import type { NextRequest } from 'next/server'
 // we can do conditional also
 export function middleware(request: NextRequest) {
   const response  = NextResponse.next();
-  console.log('response',response)
+  // console.log('response',response)
     if(request.nextUrl.pathname== "/profile"){
       return NextResponse.rewrite(new URL("/dashboard", request.url))
     }
